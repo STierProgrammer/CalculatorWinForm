@@ -63,7 +63,6 @@
             resultTextBox.ReadOnly = true;
             resultTextBox.Size = new Size(346, 70);
             resultTextBox.TabIndex = 1;
-            resultTextBox.Text = "3.1415";
             resultTextBox.TextAlign = HorizontalAlignment.Center;
             // 
             // btnMultiplication
@@ -103,7 +102,7 @@
             btnPlus.TabIndex = 4;
             btnPlus.Text = "+";
             btnPlus.UseVisualStyleBackColor = false;
-            btnPlus.MouseCaptureChanged += OperatorButton_Click;
+            btnPlus.Click += OperatorButton_Click;
             // 
             // btnMinus
             // 
@@ -168,6 +167,7 @@
             btn5.TabIndex = 9;
             btn5.Text = "5";
             btn5.UseVisualStyleBackColor = false;
+            btn5.Click += NumberButton_Click;
             // 
             // btn4
             // 
@@ -258,7 +258,7 @@
             btnEquals.TabIndex = 16;
             btnEquals.Text = "=";
             btnEquals.UseVisualStyleBackColor = false;
-            btnEquals.Click += OperatorButton_Click;
+            btnEquals.Click += BtnEquals_Click;
             // 
             // CalculatorForm
             // 
@@ -285,7 +285,7 @@
             Controls.Add(btnClear);
             FormBorderStyle = FormBorderStyle.Fixed3D;
             Name = "CalculatorForm";
-            Text = "Form1";
+            Text = "Calculator";
             ResumeLayout(false);
             PerformLayout();
         }
@@ -293,11 +293,12 @@
         #endregion
 
         private Button btnClear;
-        private TextBox resultTextBox;
         private Button btnMultiplication;
         private Button btnDivision;
+        private Button btnEquals;
         private Button btnPlus;
         private Button btnMinus;
+        private Button btn0;
         private Button btn1;
         private Button btn2;
         private Button btn3;
@@ -307,7 +308,10 @@
         private Button btn7;
         private Button btn8;
         private Button btn9;
-        private Button btn0;
-        private Button btnEquals;
+
+        private TextBox resultTextBox;
+
+        private String fullText = "";
+        private List<string> expression = new List<string>();
     }
 }

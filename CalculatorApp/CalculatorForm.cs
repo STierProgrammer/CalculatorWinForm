@@ -36,19 +36,14 @@ namespace CalculatorApp
                     fullText = "";
                 }
 
-                if (expression.Count > 0 && !double.TryParse(expression.Last(), out _))
-                {
-                    expression[expression.Count - 1] = btn.Text;
-                    resultTextBox.Text = resultTextBox.Text.TrimEnd() + " " + btn.Text + " ";
-                }
-                else if (expression.Count > 0)
+                if (double.TryParse(expression.Last(), out _))
                 {
                     expression.Add(btn.Text);
-                    resultTextBox.Text += " " + btn.Text + " ";
+                    resultTextBox.Text = resultTextBox.Text.TrimEnd() + " " + btn.Text + " ";
                 }
                 else
                 {
-                    throw new InvalidExpressionException("Cannot start an expression with an operator!");
+                    throw new InvalidExpressionException("Operator has been placed in a wrong place!");
                 }
             }
             catch (InvalidExpressionException ex)
@@ -64,7 +59,6 @@ namespace CalculatorApp
 
         private void BtnEquals_Click(object sender, EventArgs e)
         { 
-
             try
             {
                 if (!string.IsNullOrEmpty(fullText))
@@ -72,7 +66,7 @@ namespace CalculatorApp
                     expression.Add(fullText);
                 }
 
-                if (expression.Count > 1 && double.TryParse(expression.Last(), out _))
+                if (double.TryParse(expression.Last(), out _))
                 {
                     double result = EvaluateExpression(expression);
 
